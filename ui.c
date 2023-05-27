@@ -48,12 +48,12 @@ void userSafeRead(char *buffer, size_t buffer_size)
 
 static void distroySession(game_session_t **session)
 {
-    /* Distroy colums */
+    /* Destroy colums */
     for (int i = 0; i < (*session)->lines; i++)
         free((*session)->grid[i]);
-    /* Distroy lines */
+    /* Destroy lines */
     free((*session)->grid);
-    /* Distroy the session pointer */
+    /* Destroy the session pointer */
     free(*session);
 }
 
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
         }
         if (session->exit_game)
             break;
-        /* Distroy the session */
+        /* Destroy the session */
         distroySession(&session);
     }
     return 0;
