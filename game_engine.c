@@ -168,15 +168,15 @@ static void fillGridPos(game_session_t *session, int line, int col)
 static void buildGrid(game_session_t *session)
 {
     assert(session != NULL && session->grid == NULL);
-    /* Create lines */
+    /* Créer les lignes */
     session->grid = (char **) malloc(sizeof(char *) * session->lines);
-    /* Create colums */
+    /* Créer les colonnes */
     for (int i = 0; i < session->lines; i++)
     {
         session->grid[i] = (char *) malloc(session->cls);
         memset(session->grid[i], 0, session->cls);
     }
-    /* Fill the grid */
+    /* Remplir la grille */
     for (int i = 0; i < session->lines; i++)
     {
         for (int j = 0; j < session->cls; j++)
@@ -200,7 +200,7 @@ static game_session_t *buildGameSession(size_t lines, size_t cols, size_t symbol
     g_session->exit_game = 0;
     g_session->start_time = mktime(localtime(&temp));
     memcpy(g_session->username, username, USER_MAX_BUFF);
-    /* Build the grid */
+    /* Construire la grille */
     buildGrid(g_session);    
     return g_session;
 }
@@ -219,7 +219,7 @@ static int checKallignedSymboles(game_session_t *session, int current_line, int 
     /* Check if the move worth points */
     if (move_direction == 'G')
     {
-        /* Chcek if the move is possible */
+        /* Check si le coup est possible */
         if (current_colum == 0) return 0;
         /* Set nav indexes for colums */
         next_col = current_colum - 1;
@@ -366,7 +366,7 @@ static int checKallignedSymboles(game_session_t *session, int current_line, int 
             return DIR_DOWN;
         }
     }
-    /* Move is not possible */
+    /* Coup impossible */
     return 0;
 }
 
@@ -393,7 +393,7 @@ static void updateGrid(game_session_t *session, int line, int col, int move, int
             temp_col--;
             break;
     }
-    /* Swap the choosen symbole */
+    /* Echange le symbole choisi */
     temp_symbl = session->grid[temp_line][temp_col];
     session->grid[temp_line][temp_col] = session->grid[line][col];
     session->grid[line][col] = temp_symbl;
@@ -401,7 +401,7 @@ static void updateGrid(game_session_t *session, int line, int col, int move, int
 
     refreshScreen(session);
     
-    /* Distroy the matched symboles and count the points */
+    /* Détruire les symboles et compter les points */
     if (parse_direc == DIR_UP)
     {
         parser = temp_line;
@@ -496,7 +496,7 @@ static void updateGrid(game_session_t *session, int line, int col, int move, int
     {
         int init_line = temp_line;
         parser = (init_line + 1) % session->lines;
-        /* Going down first */
+        /* Then going down */
         while (1)
         {
             if (session->grid[parser][temp_col] == temp_symbl)
@@ -525,8 +525,8 @@ static void updateGrid(game_session_t *session, int line, int col, int move, int
 
     refreshScreen(session);
 
-    /* Fill empty spaces in the grid */
-    /* Gravity is making symbols shift to the top */
+    /* Remplir les espaces vides de la grille */
+    /* Gravité vers le haut */
     for (int i = 0; i < session->cls; i++)
     {
         /* Get the empty zone delimiters */
@@ -557,7 +557,7 @@ static void updateGrid(game_session_t *session, int line, int col, int move, int
             session->grid[x + cpy_step][i] = 0;
             refreshScreen(session);
         }
-        /* Place new symboles */
+        /* Placer de nouveaux symboles */
         for (int j = x; j < session->lines - 1; j++)
         {
             session->grid[j][i] = 0;
@@ -590,10 +590,10 @@ static void handleUserMove(game_session_t *session, char user_buffer[USER_MAX_BU
     if (col < 0 || col >= session->cls || line < 0 || line >= session->lines)
         return;
     
-    /* Check if the move is possible in the grid */
+    /* Check si le coup est possible dans la grille */
     move = checKallignedSymboles(session, line, col, direction[0], &alligned_direction);
     if (move == 0) return;
-    /* Update the grid */
+    /* Update la grille */
     updateGrid(session, line, col, move, alligned_direction);
 }
 
@@ -670,7 +670,7 @@ static void getGridSize(size_t *lines, size_t *cols, size_t *symbls_count, char 
     assert(lines != NULL && cols != NULL);
     char user_entry[USER_MAX_BUFF];
 
-    /* Get grid lines count */
+    /* Nombre de lignes de la grille */
     do 
     {
         printf("Lines:\t");
@@ -679,7 +679,7 @@ static void getGridSize(size_t *lines, size_t *cols, size_t *symbls_count, char 
         printf("Invalid entry, please try again !\n");
     } while (1);
 
-    /* Get grid colums count */
+    /* Nombre de colonne de la grille */
     do 
     {
         printf("Colums:\t");
@@ -688,7 +688,7 @@ static void getGridSize(size_t *lines, size_t *cols, size_t *symbls_count, char 
         printf("Invalid entry, please try again !\n");
     } while (1);
 
-    /* Get symbols count */
+    /* Nombre de symboles */
     do 
     {
         printf("Symbols (%d-%d):\t", MAX_SYBLS, MIN_SYBLS);
@@ -698,14 +698,14 @@ static void getGridSize(size_t *lines, size_t *cols, size_t *symbls_count, char 
         printf("Invalid entry, please try again !\n");
     } while (1);
 
-    /* Get username */
+    /* Demander un Username */
     printf("Username: ");
     userSafeRead(username, USER_MAX_BUFF);
 }
 
 game_session_t *gameEngine_LoadGame(void)
 {
-    /* Load the game */
+    /* Charger la partie */
     clearScreen();
     printf("\t\t *** Chargement du jeu ***\n");
     game_session_t *new_session = NULL;
