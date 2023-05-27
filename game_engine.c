@@ -256,7 +256,7 @@ static int checKallignedSymboles(game_session_t *session, int current_line, int 
 
     if (move_direction == 'D')
     {
-        /* Chcek if the move is possible */
+        /* Check if the move is possible */
         if (current_colum == session->cls - 1) return 0;
         /* Set nav indexes for colums */
         next_col = current_colum + 1;
@@ -293,7 +293,7 @@ static int checKallignedSymboles(game_session_t *session, int current_line, int 
 
     if (move_direction == 'H')
     {
-        /* Chcek if the move is possible */
+        /* Check if the move is possible */
         if (current_line == 0) return 0;
         /* Set nav indexes for colums */
         next_line = current_line - 1;
@@ -496,7 +496,7 @@ static void updateGrid(game_session_t *session, int line, int col, int move, int
     {
         int init_line = temp_line;
         parser = (init_line + 1) % session->lines;
-        /* Then going down */
+        /* Going down first */
         while (1)
         {
             if (session->grid[parser][temp_col] == temp_symbl)
@@ -679,7 +679,7 @@ static void getGridSize(size_t *lines, size_t *cols, size_t *symbls_count, char 
         printf("Invalid entry, please try again !\n");
     } while (1);
 
-    /* Nombre de colonne de la grille */
+    /* Nombre de colonnes de la grille */
     do 
     {
         printf("Colums:\t");
@@ -688,7 +688,7 @@ static void getGridSize(size_t *lines, size_t *cols, size_t *symbls_count, char 
         printf("Invalid entry, please try again !\n");
     } while (1);
 
-    /* Nombre de symboles */
+    /* Nombre de symboles pour la partie */
     do 
     {
         printf("Symbols (%d-%d):\t", MAX_SYBLS, MIN_SYBLS);
