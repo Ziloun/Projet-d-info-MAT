@@ -1,16 +1,12 @@
 # Projet-d-info-MAT
 
-Télécharger le fichier ZIP
+- Télécharger le fichier ZIP
 
-Ouvrir le fichier dans un terminal
+- Ouvrir le fichier dans un terminal
 
--Dans le terminal saisir "Make" puis pour lancer le programme du jeu saisir "./game" 
+- Dans le terminal saisir "Make" puis pour lancer le programme du jeu saisir "./game" 
 
-- Suivez les instructions du jeu pour lancer la partie
+- Suivez les instructions du jeu pour lancer la partie 
 
-- Pour deplacer un symbole saisir ses coordonees puis mettre un espace et ensuite metrre la direction qu'on souhaite que ce dernier bouge( "H" pour haut, "D" pour droite...)  ex: B3 G pour deplacer le symbole qui est a B4 a gauche.
+- Pour déplacer un symbole saisir ses coordonnées puis mettre un espace et ensuite indiquer la direction souhaitée pour ce dernier ( "H" vers le haut, "D" pour cers la droite...) exemple : B3 G pour déplacer le symbole qui est à l'emplacement B3 à gauche.
 
--
-
-
-Start pour lancer une nouvelle partie ou Load pour charger une partie déjà enregistrée
